@@ -19,7 +19,6 @@ Airplane.prototype.land = function () {
   this.isFlying = false;
 };
 
-
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -38,10 +37,38 @@ Airplane.prototype.land = function () {
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
-
-function Person() {
-
+// creating a constructor function
+// it takes 3 prop name , age and stomach which is an empty array
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+
+//creating a eat method that gives perosn to eat some edible
+// it has a param of somthing that we can pass food into
+// if stomach lenth < 10 the person can eta
+// we want to push the argument of something edible to the array (stomach)
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  }
+};
+
+// we need to creat a poop method
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+// method called toString - needs to return a string with name and age
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+};
+
+// create my object
+
+const personOne = new Person("Bikesh", 28);
+
+console.log(personOne.toString());
 
 /*
   TASK 2
@@ -57,9 +84,7 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
-}
+function Car() {}
 
 /*
   TASK 3
@@ -68,9 +93,7 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
-}
+function Baby() {}
 
 /* 
   TASK 4
@@ -82,14 +105,21 @@ function Baby() {
   4. 
 */
 
-
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
-if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Baby) { module.exports.Baby = Baby }
+if (typeof exports !== "undefined") {
+  module.exports = module.exports || {};
+  if (Airplane) {
+    module.exports.Airplane = Airplane;
+  }
+  if (Person) {
+    module.exports.Person = Person;
+  }
+  if (Car) {
+    module.exports.Car = Car;
+  }
+  if (Baby) {
+    module.exports.Baby = Baby;
+  }
 }
