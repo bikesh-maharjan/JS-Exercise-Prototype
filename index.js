@@ -83,8 +83,29 @@ console.log(personOne.toString());
     - STRETCH: A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
+// creating a constructor for model and milesPerGallon
+// initialize tank and odometer = 0
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
+// creathing a fill method here
+Car.prototype.fill = function (gallons) {
+  this.tank = this.tank + gallons;
+  return this.tank;
+};
 
-function Car() {}
+// Car.prototype.drive = function (distance) {
+//   this.odometer = this.odometer + distance;
+//   this.tank = this.tank - distance / this.milesPerGallon;
+// };
+
+const carOne = new Car("Honda", 35);
+console.log(carOne);
+
+//
 
 /*
   TASK 3
@@ -93,16 +114,27 @@ function Car() {}
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {}
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
+  this.name = name;
+}
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `${this.name} is playing with ${this.favoriteToy}`;
+};
+
+const babyOne = new Baby("Aman", 25, "Iron Man");
+console.log(babyOne.play());
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. This refers to current object
+  2. Implict Binding is used 80% of use cases and it looks to the left of the dot and it only applies to object with methods
+  3. Explicit Binding refers to particular object that is bound such as .call or .apply
+  4. New binding refers to a specific object and points to the new object that's been created
 */
 
 ///////// END OF CHALLENGE /////////
